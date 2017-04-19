@@ -30,9 +30,9 @@ AMP는 모바일 콘텐츠 최적화 표준이다. 뉴스나 블로그 같은 �
 
 [https://www.ampproject.org/ko/](https://www.ampproject.org/ko/)
 
->- 최상위 <html ⚡> 태그를 포함해야 합니다(<html amp>도 허용됨).
+>- 최상위 <html ⚡> 태그를 포함해야 합니다(html amp도 허용됨).
 >- AMP HTML 문서의 일반 HTML 버전을 가리키는 <link rel="canonical" href="$SOME_URL" /> 태그를 헤드 내에 포함해야 합니다. 이러한 HTML 버전이 없는 경우 스스로를 가리키는 태그를 포함해야 합니다.
->- 헤드 태그 내에 <meta name="viewport" content="width=device-width,minimum-scale=1"> 태그를 포함해야 합니다. 또한 initial-scale=1을 포함시키는 것이 좋습니다.
->- 헤드의 마지막 요소로서 <script async src="https://cdn.ampproject.org/v0.js"></script> 태그를 포함해야 합니다(이 요소는 AMP JS 라이브러리를 포함하고 로드합니다).
->- 대부분의 HTML 태그는 AMP HTML에 직접 사용될 수 있지만, <img> 태그와 같은 특정 태그는 이와 동등하거나 약간 향상된 사용자 지정 AMP HTML 태그로 대체, 금지됩니다.
+>- 헤드 태그 내에 meta name="viewport" content="width=device-width,minimum-scale=1" 태그를 포함해야 합니다. 또한 initial-scale=1을 포함시키는 것이 좋습니다.
+>- 헤드의 마지막 요소로서 script async src="https://cdn.ampproject.org/v0.js" 태그를 포함해야 합니다(이 요소는 AMP JS 라이브러리를 포함하고 로드합니다).
+>- 대부분의 HTML 태그는 AMP HTML에 직접 사용될 수 있지만, img 태그와 같은 특정 태그는 이와 동등하거나 약간 향상된 사용자 지정 AMP HTML 태그로 대체, 금지됩니다.
 >- html validation 체크 "#development=1"을 URL에 추가합니다 ex) http://localhost:8080/#development=1
