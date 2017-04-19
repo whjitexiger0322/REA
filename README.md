@@ -6,11 +6,11 @@ Real Estate Agent
 
 ## Intro
 
-Goole의 AMP(Accelerated Mobile Page)를 이용하여 기존의 부동산 매물검색 모바일 페이지를 재구성.
+Goole의 **AMP**(Accelerated Mobile Page)를 이용하여 기존의 부동산 매물검색 모바일 페이지를 재구성.
 >- AMP
 >- Express.js
 
-##Installation
+## Installation
 
 "`
 cd REA
@@ -18,24 +18,22 @@ npm install
 node server.js
 `"
 
-##Link
+## Link
+
 "`
 https://localhost:8080
 `"
 
-##AMP(Accelerated Mobile Page)
+## AMP(Accelerated Mobile Page)
 
-AMP는 모바일 콘텐츠 최적화 표준이다. 뉴스나 블로그 같은 정적인 콘텐츠를 만들어 배포하는 온라인 매체가 이 AMP 표준에 맞춰 콘텐츠를 작성하여 게시하면 기존의 모바일 콘텐츠보다 약 15% ~ 85%의 성능 향상을 가져올 수 있다. 
+>AMP는 모바일 콘텐츠 최적화 표준이다. 뉴스나 블로그 같은 정적인 콘텐츠를 만들어 배포하는 온라인 매체가 이 AMP 표준에 맞춰 콘텐츠를 작성하여 게시하면 기존의 모바일 콘텐츠보다 약 15% ~ 85%의 성능 향상을 가져올 수 있다. 
+>AMP는 웹 콘텐츠 제작에 사용되는 기술에 제약을 가한다. 속도를 떨어뜨리는 기술의 사용을 배제함으로써 속도의 향상을 꽤하는 방법인 셈이다.
+>AMP 페이지는 일반적인 HTML 페이지에서 광고나 자바스크립트, CSS 애니메이션 등과 같은 동적인 요소들을 제거하여 최소 요소만 남겨 둔다. 
+>자바스크립트 삽입은 가능하나 구글 AMP에서 정한 규약에 맞춰야 한다.
 
-이를 위해 AMP는 웹 콘텐츠 제작에 사용되는 기술에 제약을 가한다. 속도를 떨어뜨리는 기술의 사용을 배제함으로써 속도의 향상을 꽤하는 방법인 셈이다.
+### Feature
 
-AMP 페이지는 일반적인 HTML 페이지에서 광고나 자바스크립트, CSS 애니메이션 등과 같은 동적인 요소들을 제거하여 최소 요소만 남겨 둔다. 
-
-자바스크립트 삽입은 가능하나 구글 AMP에서 정한 규약에 맞춰야 한다.
-
-###Feature
-
->[https://www.ampproject.org/ko/](https://www.ampproject.org/ko/)
+[https://www.ampproject.org/ko/](https://www.ampproject.org/ko/)
 
 >- 최상위 <html ⚡> 태그를 포함해야 합니다(<html amp>도 허용됨).
 >- AMP HTML 문서의 일반 HTML 버전을 가리키는 <link rel="canonical" href="$SOME_URL" /> 태그를 헤드 내에 포함해야 합니다. 이러한 HTML 버전이 없는 경우 스스로를 가리키는 태그를 포함해야 합니다.
