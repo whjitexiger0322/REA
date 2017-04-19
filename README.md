@@ -4,7 +4,7 @@ Real Estate Agent
 
 ## Intro
 
-Goole의 **AMP**(Accelerated Mobile Page)를 이용하여 기존의 부동산 매물검색 모바일 페이지를 재구성.
+Google의 **AMP**(Accelerated Mobile Page)를 이용하여 기존의 부동산 매물검색 모바일 페이지를 재구성.
 >- AMP
 >- Express.js
 
