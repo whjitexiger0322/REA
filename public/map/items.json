@@ -1,0 +1,16 @@
+{
+    "datas": [
+        {
+            "id" : "18304",
+            "img" : "https://zigbang.s3-ap-northeast-1.amazonaws.com/public/buildings/18304.jpg",
+            "name" : "고려 아카데미 텔",
+            "address1" : "서울시",
+            "address2" : "마포구 아현동",
+            "address3" : "437-3",
+            "floor" : "17층",
+            "rooms" : "356세대",
+            "established" : "1987.11"
+        }
+    ]
+}
+

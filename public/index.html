@@ -1,0 +1,479 @@
+<!doctype html>
+<html amp lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>부동산 매물결과 FrontEnd 구현</title>
+    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+    <meta name="viewport" content="width=devide-width,minimum-scale=1,initial-scale=1">
+
+	<style type="text/css"></style>
+
+	<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+	<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+
+
+	<style amp-custom>
+		body {
+			background-color: #eeeeee;
+			font-weight : bolder;
+		}
+
+		#main {
+			color : black;
+			font-weight: 900;
+		}
+
+		div#info {
+			width : 720px;
+		}
+
+		div#detail, div#comment {
+			width : 720px;
+		}
+
+		p {
+			padding-left : 10px;
+		}
+
+		h2 {
+			color : #666666;
+			font-weight : bolder;
+			margin-left : 15px;
+			clear : both;
+		}
+
+		ul {
+			list-style-type : none;
+			border : 1px solid #cccccc;
+			margin-top : 0px;
+			margin-bottom : 0px;
+			margin-left : 10px;
+			margin-right : 10px;
+			padding : 0px;
+			background-color : #ffffff;
+		}
+
+		li {
+			background-color : #ffffff;
+		}
+
+		div.index {
+			display : inline-block;
+			background-color: #dddddd;
+			width : 150px;
+			padding-left : 0px;
+		}
+
+		div.content {
+			display: inline-block;
+			width : 400px;
+		}
+
+		.content h3 {
+			color : #555555;
+		}
+
+		.index h3 {
+			text-align : center;
+			color : #777777;
+		}
+
+		.text {
+			border : 1px solid #bbbbbb;
+			width : 700px;
+			margin-left : 10px;
+			margin-right : 10px;
+			background-color : #ffffff;
+		}
+
+		#map {
+			width : 700px;
+			height : 300px;
+			margin-left : 10px;
+			margin-right : 10px;
+			border : 1px solid gray;
+		}
+
+		amp-carousel {
+			width : 720px;
+		}
+
+		#agentImg {
+			width : 100px;
+			height : 200px;
+			float : left;
+			margin : 10px;
+			border : 1px solid gray;
+		}
+
+		#building-img {
+			float : left;
+			margin : 10px;
+		}
+
+		#building-description {
+			width : 720px;
+		}
+
+		#shortcut-to-map a {
+			width : 350px;
+			float : left;
+			text-decoration : none;
+			text-align : center;
+			margin-left : 10px;
+			border : 1px solid #dddddd;
+		}
+
+		#shortcut-to-roadview a {
+			width : 350px;
+			float : left;
+			text-decoration : none;
+			text-align : center;
+			border : 1px solid #dddddd;
+		}
+
+		#main-agent {
+			background-color : #ffffff;
+			margin-left : 10px;
+			margin-right : 10px;
+			width : 700px;
+			clear : both;
+		}
+
+		#office-info {
+			clear : both;
+		}
+
+		#agent-info {
+			float : left;
+			margin : 10px;
+		}
+
+		#agent-info ul {
+			border : none;
+		}
+
+		#agent-info ul li {
+			font-size : 30px;
+			color : #777777;
+		}
+
+		#office-info ul {
+			margin-left : 40px;
+			list-style-type : circle;
+			border : none;
+			color : #555555;
+			font-weight : 100;
+		}
+
+		#warning {
+			background-color: #aaaaaa;
+			margin-left : 10px;
+			margin-right : 10px;
+			margin-bottom : 10px;
+			width : 700px;
+			color : #ffffff;
+			font-weight : 100;
+		}
+
+		#button { 
+			width : 200px;
+			height: 40px;
+			background-color: #ff6633;
+			display: inline-block;
+			outline: none;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			vertical-align: middle;
+			font: 14px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-shadow: 0 1px 1px rgba(0,0,0,.3);
+			-webkit-border-radius: .5em; 
+			-moz-border-radius: .5em;
+			border-radius: .5em;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			margin : auto;
+			color : #ffffff;
+			font-weight : 900;
+			font-size : 40px;
+		}
+
+		#button:hover {
+			text-decoration: none;
+		}
+
+		#button:active {
+			position: relative;
+			top: 1px;
+		}
+
+		#one {
+			width : 360px;
+			float : left;
+			border : none;
+		}
+
+		#two {
+			width : 360px;
+			float : left;
+		}
+
+		#num {
+			color : orange;
+		}
+
+		#daum-map a {
+			font-size : 50px;
+			color : #444444;
+			background-color: #ffffff;
+		}
+
+		h5 {
+			border-top : 1px solid #eeeeee;
+			border-bottom : 1px solid #eeeeee;
+			margin : 10px;
+			color : #555555;
+			font-size : 20px;
+		}
+
+		#sub-agent {
+			width : 700px;
+			height : 100px;
+			margin-left : 10px;
+			margin-right : 10px;
+			padding-top : 10px;
+			border-top : 1px solid #dddddd;
+			background-color: #ffffff;
+		}
+
+		#sub-agent div {
+			margin : 3px;
+			float : left;
+			background-color: #ffffff;
+			width : 250px;
+		}
+
+		#sub-agent div div {
+			clear : both;
+		}
+
+		#kim {
+			color : #bbbbbb;
+		}
+
+		#han {
+			font-size : 20px;
+		}
+
+		#attach {
+			border : 2px solid #bbbbbb;
+			background-color: #eeeeee;
+			color : #bbbbbb;
+		}
+
+		#address {
+			padding-bottom: 15px;
+			border-bottom : 1px solid #eeeeee;
+		}
+
+	</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+</head>
+<body>
+    <amp-carousel width=720
+    	height=300
+    	layout=responsive
+    	type=slides
+    	autoplay
+    	delay=1000>
+  		<amp-img src="img/1.jpg"
+    		width="720"
+    		height="500"
+    		alt="one-room"></amp-img>
+  		<amp-img src="img/2.jpg"
+    		width="720"
+    		height="500"
+    		alt="one-room"></amp-img>
+  		<amp-img src="img/3.jpg"
+    		width="720"
+    		height="500"
+    		alt="one-room"></amp-img>
+    	<amp-img src="img/4.jpg"
+    		width="720"
+    		height="500"
+    		alt="one-room"></amp-img>
+  		<amp-img src="img/5.jpg"
+    		width="720"
+    		height="500"
+    		alt="one-room"></amp-img>
+	</amp-carousel>
+
+	<div id="info">
+		<h2 id="main">신사동 예쁜 쓰리룸</h2>
+
+		<ul id="cost">
+			<li>
+				<div class="index"><h3>보증금</h3></div>
+				<div class="content"><h3><span id="num">10000</span>만원</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>월세</h3></div>
+				<div class="content"><h3><span id="num">100</span>만원</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>등록번호</h3></div>
+				<div class="content"><h3>1234567</h3></div>
+			</li>
+		</ul>
+
+		<ul id="location">
+			<li>
+				<div class="index"><h3>주소</h3></div>
+				<div class="content"><h3>서울시 강남구 신사동</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>인근전철역</h3></div>
+				<div class="content"><h3>신사역(3호선)압구정역(7호선)</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>층/건물층수</h3></div>
+				<div class="content"><h3>3층/4층</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>크기</h3></div>
+				<div class="content"><h3>전용면적 60.18m<sup>2</sup> 18.18p</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>구조</h3></div>
+				<div class="content"><h3>쓰리룸+</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>건물형태</h3></div>
+				<div class="content"><h3>다세대/다가구</h3></div>
+			</li>
+		</ul>
+
+		<ul id="management">
+			<li>
+				<div class="index"><h3>옵션</h3></div>
+				<div class="content"><h3>옷장</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>관리비</h3></div>
+				<div class="content"><h3>없음</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>관리비 포함항목</h3></div>
+				<div class="content"><h3>수도</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>주차</h3></div>
+				<div class="content"><h3>불가능</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>엘레베이터</h3></div>
+				<div class="content"><h3>없음</h3></div>
+			</li>
+			<li>
+				<div class="index"><h3>입주가능일</h3></div>
+				<div class="content"><h3>4월 21일 이후</h3></div>
+			</li>
+		</ul>	
+	</div>
+
+	<div id="detail">
+		<h2>상세설명</h2>
+		<div class="text">
+			<p>거실과 방이 크게 나온 신사동 3룸 입니다^^</p>
+			<p>남향집이고 해가 너무 잘들고 근처 건물둘에 비해서 집이 깨끗하고 뷰도 좋은 편입니다.</p>
+			<p>가격은 집주인 분과 상의 후에 조정 가능합니다!!</p>
+			<p>깔끔하고 좋은 집 보러 연락주세요!</p>	
+		</div>
+		
+	</div>
+	
+	<div id="comment">
+		<h2>담당자 한마디</h2>
+		
+		<div class="text">
+			<p>공휴일 및 주말에도 언제든지 상담 가능</p>
+			<p>차량 픽업 서비스 가능</p>
+			<p>조건에 맞는 집 답사</p>
+			<p>상담부터 계약까지 고객 맞춤형 서비스</p>	
+		</div>
+		
+	</div>
+
+	<div id="building-info">
+		<h2>건물정보</h2>
+		<div>
+			<div id="building-img"></div>
+			<div id="building-description">
+				<ul>
+					<li><h3 id="name"></h3></li>
+					<li id="address"></li>
+					<li><h3 id="floor"></h3></li>
+					<li><h3 id="rooms"></h3></li>
+					<li><h3 id="established"></h3></li>
+				</ul>
+			</div>	
+		</div>
+	</div>
+	
+	<div id="daum-map">
+		<h2>위치보기</h2>
+		<div id="map"></div>
+		<div id="shortcut-to-map"></div>
+		<div id="shortcut-to-roadview"></div>
+	</div>
+
+	<div>
+		<h2>중개사정보</h2>
+		<div id="main-agent">
+			<amp-img src="agent/중개사.jpg"
+				width = "200";
+				height = "200";
+				id="agentImg"></amp-img>
+			<div id="agent-info">
+				<ul>
+					<li>대표공인중개사 (김도진)</li>
+					<li>whjitexiger0322@gmail.com</li>
+					<li>010-5020-0044</li>
+				</ul>
+			</div>
+			<div id="office-info">
+				<h5>중개사무소 정보</h5>
+				<ul>
+					<li>서울시 강동구, 까치부동산(최까치)</li>
+					<li>대표번호 : 1588 - 1688</li>
+				</ul>
+			</div>	
+		</div>
+		
+		<div id="warning">
+			<p>이 방은 <strong>공인중개사가 등록한 중개 매물</strong>입니다.<br>공인중개사를 통해 <strong>안전하게 계약</strong>할 수 있으며, <strong>법정중개 보수가 발생</strong>합니다.</p>	
+		</div>
+		
+		<div id="sub-agent">
+			<div>
+				<div id="kim">우정공인중개사(김성훈)</div>
+				<div id="han">중개보조원(한유진팀장)</div>
+				<div><span id="num">010-5228-7825</span> <span id="attach">중개</span></div>	
+			</div>	
+			<div id="cs"><a href="tel:010-5020-0044" id="button">☏문의하기</a></div>
+		</div>
+	</div>
+
+	<!-- amp-iframe src Must start with https:// -->
+	<!-- map -->
+	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=edadda1986b51d2a9e1eec38f7a08f1a&libraries=services"></script>
+	<script type="text/javascript" src="map/map.js"></script>
+</body>
+</html>
