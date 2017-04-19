@@ -1,0 +1,25 @@
+{
+  "name": "rea",
+  "version": "1.0.0",
+  "description": "real estate agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whjitexiger0322/REA.git"
+  },
+  "keywords": [
+    "AMP"
+  ],
+  "author": "whjitexiger0322",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whjitexiger0322/REA/issues"
+  },
+  "homepage": "https://github.com/whjitexiger0322/REA#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
